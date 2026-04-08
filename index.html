@@ -31975,5 +31975,44 @@ function confirmImportFromShare(importedData, filename) {
     // Por ejemplo, después de guardar una sesión o cambiar de pantalla
 </script>
 
+<script>
+    // Registrar Service Worker
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js')
+                .then(registration => {
+                    console.log('Service Worker registrado con éxito:', registration.scope);
+                })
+                .catch(error => {
+                    console.error('Error al registrar el Service Worker:', error);
+                });
+        });
+    }
+    
+    // Detectar si la app está instalada (PWA)
+    window.addEventListener('beforeinstallprompt', (e) => {
+        // Prevenir que Chrome muestre automáticamente el banner
+        e.preventDefault();
+        // Guardar el evento para usarlo después (cuando el usuario haga clic en "Instalar")
+        window.deferredPrompt = e;
+        console.log('La app se puede instalar');
+    });
+    
+    // Función para mostrar el banner de instalación (opcional)
+    function showInstallPrompt() {
+        if (window.deferredPrompt) {
+            window.deferredPrompt.prompt();
+            window.deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('Usuario aceptó la instalación');
+                } else {
+                    console.log('Usuario rechazó la instalación');
+                }
+                window.deferredPrompt = null;
+            });
+        }
+    }
+</script>
+
 </body>
 </html>
