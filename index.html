@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WineBOX Tool - Sistema Clínico Integral</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
+    <meta name="theme-color" content="#4a6fa5">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="WineBox">
     <style>
         :root {
             --primary: #4a6fa5;
@@ -31921,5 +31927,51 @@ function confirmImportFromShare(importedData, filename) {
 
 
     </script>
+
+<!-- Bridge para comunicarse con la app nativa -->
+<script>
+    // Detectar si estamos dentro de la app TWA
+    window.isTWA = !!window.AndroidBridge;
+    
+    // Función para mostrar anuncio (solo si existe el bridge)
+    function showInterstitialAd() {
+        if (window.isTWA && window.AndroidBridge?.showAd) {
+            window.AndroidBridge.showAd();
+        } else {
+            console.log('Ad not shown: not in TWA or bridge missing');
+        }
+    }
+    
+    // Función para compartir (usa bridge si existe)
+    async function universalShare(text, title = 'Compartir') {
+        // En la app TWA
+        if (window.isTWA && window.AndroidBridge?.shareText) {
+            window.AndroidBridge.shareText(text);
+            return true;
+        }
+        
+        // En navegador o PWA normal
+        if (navigator.share) {
+            try {
+                await navigator.share({ title, text });
+                return true;
+            } catch(e) {}
+        }
+        
+        // Fallback: copiar al portapapeles
+        try {
+            await navigator.clipboard.writeText(text);
+            alert('📋 Texto copiado al portapapeles');
+            return true;
+        } catch(e) {
+            alert('No se pudo compartir. Copia manualmente el texto.');
+            return false;
+        }
+    }
+    
+    // Ejemplo de uso: llamar a showInterstitialAd() cuando quieras mostrar un anuncio
+    // Por ejemplo, después de guardar una sesión o cambiar de pantalla
+</script>
+
 </body>
 </html>
