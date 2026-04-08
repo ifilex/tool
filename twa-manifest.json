@@ -1,0 +1,50 @@
+{
+  "packageId": "com.wineboxtool.cloud",
+  "host": "ifilex.github.io",
+  "name": "WineBox Tool",
+  "launcherName": "WineBOX Free",
+  "display": "standalone",
+  "themeColor": "#4A6FA5",
+  "themeColorDark": "#000000",
+  "navigationColor": "#000000",
+  "navigationColorDark": "#000000",
+  "navigationDividerColor": "#000000",
+  "navigationDividerColorDark": "#000000",
+  "backgroundColor": "#FFFFFF",
+  "enableNotifications": true,
+  "startUrl": "/tool/",
+  "iconUrl": "https://ifilex.github.io/tool/icons/icon-512x512.png",
+  "splashScreenFadeOutDuration": 300,
+  "signingKey": {
+    "path": "C:\\Users\\mrwad\\OneDrive\\Documentos\\tool\\android.keystore",
+    "alias": "android"
+  },
+  "appVersionName": "3",
+  "appVersionCode": 3,
+  "shortcuts": [],
+  "generatorApp": "bubblewrap-cli",
+  "webManifestUrl": "https://ifilex.github.io/tool/manifest.json",
+  "fallbackType": "customtabs",
+  "features": {},
+  "alphaDependencies": {
+    "enabled": false
+  },
+  "enableSiteSettingsShortcut": true,
+  "isChromeOSOnly": false,
+  "isMetaQuest": false,
+  "fullScopeUrl": "https://ifilex.github.io/tool/",
+  "minSdkVersion": 21,
+  "orientation": "any",
+  "fingerprints": [
+    {
+      "sha256Fingerprint": "AE:CC:23:64:9B:C6:A0:4C:44:0A:8C:BE:F5:56:A6:F9:7D:3F:E2:B4:30:81:62:AC:EA:F1:BE:B0:C3:0C:5C:31"
+    }
+  ],
+  "additionalTrustedOrigins": [],
+  "retainedBundles": [],
+  "protocolHandlers": [],
+  "fileHandlers": [],
+  "launchHandlerClientMode": "",
+  "displayOverride": [],
+  "appVersion": "3"
+}
